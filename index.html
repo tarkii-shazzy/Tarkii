@@ -14,7 +14,41 @@ body {
   overflow-x: hidden;
 }
 
-/* sections */
+/* INTRO SCREEN */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  flex-direction: column;
+}
+
+#intro h1 {
+  font-size: 3em;
+  letter-spacing: 3px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px red; }
+  to { text-shadow: 0 0 30px pink; }
+}
+
+#intro button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: red;
+  color: white;
+  cursor: pointer;
+}
+
+/* SECTIONS */
 .section {
   height: 100vh;
   position: relative;
@@ -24,7 +58,7 @@ body {
   overflow: hidden;
 }
 
-/* background image */
+/* BACKGROUND */
 .bg {
   position: absolute;
   width: 110%;
@@ -33,12 +67,11 @@ body {
   transition: transform 6s ease;
 }
 
-/* zoom effect */
 .section.show .bg {
   transform: scale(1.1);
 }
 
-/* dark overlay */
+/* OVERLAY */
 .overlay {
   position: absolute;
   width: 100%;
@@ -46,35 +79,29 @@ body {
   background: rgba(0,0,0,0.4);
 }
 
-/* text */
+/* TEXT */
 .text {
   position: relative;
   z-index: 2;
   font-size: 2em;
   max-width: 700px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
 }
 
-.section.show .text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* final button */
+/* BUTTONS */
 button {
-  padding: 15px 25px;
-  border-radius: 30px;
+  padding: 12px 20px;
+  border-radius: 25px;
   border: none;
   font-size: 1em;
   cursor: pointer;
-  background: #ff4d6d;
-  color: white;
+  margin: 10px;
 }
 
-/* hearts */
+.yes { background: #ff4d6d; color: white; }
+.no { background: gray; color: white; position: relative; }
+
+/* HEARTS */
 .heart {
   position: fixed;
   color: pink;
@@ -91,93 +118,68 @@ button {
 
 <body>
 
-<!-- SCENE 1 -->
+<!-- INTRO -->
 
-<div class="section">
-  <img src="scene1.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">Before you… things felt a little empty.</div>
+<div id="intro">
+  <h1>Puchhuu ❤️ Shazzy</h1>
+  <button onclick="startStory()">Start</button>
 </div>
 
-<!-- SCENE 2 -->
+<!-- SCENES -->
 
-<div class="section">
-  <img src="scene2.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">And then you showed up.</div>
-</div>
+<div class="section"><img src="scene1.png" class="bg"><div class="overlay"></div><div class="text" data-text="Before you… things felt a little empty."></div></div>
+<div class="section"><img src="scene2.png" class="bg"><div class="overlay"></div><div class="text" data-text="And then you showed up."></div></div>
+<div class="section"><img src="scene3.png" class="bg"><div class="overlay"></div><div class="text" data-text="And somehow… everything felt right."></div></div>
+<div class="section"><img src="scene4.png" class="bg"><div class="overlay"></div><div class="text" data-text="You became my favorite part of every day."></div></div>
+<div class="section"><img src="scene5.png" class="bg"><div class="overlay"></div><div class="text" data-text="All the little moments started to matter more."></div></div>
+<div class="section"><img src="scene6.png" class="bg"><div class="overlay"></div><div class="text" data-text="And when you're not around… it just feels off."></div></div>
+<div class="section"><img src="scene7.png" class="bg"><div class="overlay"></div><div class="text" data-text="But when you're back… everything is perfect again."></div></div>
+<div class="section"><img src="scene8.png" class="bg"><div class="overlay"></div><div class="text" data-text="I can't wait for all the memories we’ll create."></div></div>
 
-<!-- SCENE 3 -->
-
-<div class="section">
-  <img src="scene3.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">And somehow… everything felt right.</div>
-</div>
-
-<!-- SCENE 4 -->
-
-<div class="section">
-  <img src="scene4.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">You became my favorite part of every day.</div>
-</div>
-
-<!-- SCENE 5 -->
-
-<div class="section">
-  <img src="scene5.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">All the little moments started to matter more.</div>
-</div>
-
-<!-- SCENE 6 -->
-
-<div class="section">
-  <img src="scene6.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">And when you're not around… it just feels off.</div>
-</div>
-
-<!-- SCENE 7 -->
-
-<div class="section">
-  <img src="scene7.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">But when you're back… everything is perfect again.</div>
-</div>
-
-<!-- SCENE 8 -->
-
-<div class="section">
-  <img src="scene8.png" class="bg">
-  <div class="overlay"></div>
-  <div class="text">I can't wait for all the memories we’ll create.</div>
-</div>
-
-<!-- SCENE 9 (FINAL) -->
+<!-- FINAL -->
 
 <div class="section">
   <img src="scene9.png" class="bg">
   <div class="overlay"></div>
   <div class="text">
     <p>I love you, Shazzy ❤️</p>
-    <button onclick="showLove()">Click me</button>
+    <button class="yes" onclick="showLove()">Yes ❤️</button>
+    <button class="no" onmouseover="runAway(this)">No 😄</button>
   </div>
 </div>
 
 <script>
+function startStory() {
+  document.getElementById("intro").style.display = "none";
+}
+
+/* TYPEWRITER */
+function typeWriter(el, text, i = 0) {
+  if (i < text.length) {
+    el.innerHTML += text.charAt(i);
+    setTimeout(() => typeWriter(el, text, i + 1), 40);
+  }
+}
+
+/* SCROLL ANIMATION */
 const sections = document.querySelectorAll(".section");
 
 window.addEventListener("scroll", () => {
   sections.forEach(sec => {
     const top = sec.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
+    if (top < window.innerHeight - 100 && !sec.classList.contains("show")) {
       sec.classList.add("show");
+
+      const textEl = sec.querySelector(".text");
+      if (textEl && textEl.dataset.text) {
+        textEl.innerHTML = "";
+        typeWriter(textEl, textEl.dataset.text);
+      }
     }
   });
 });
 
+/* HEART EFFECT */
 function showLove() {
   for (let i = 0; i < 25; i++) {
     const heart = document.createElement("div");
@@ -188,9 +190,15 @@ function showLove() {
     heart.style.fontSize = Math.random() * 20 + 10 + "px";
 
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 4000);
   }
+}
+
+/* RUNAWAY BUTTON */
+function runAway(btn) {
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 80 + "vw";
+  btn.style.top = Math.random() * 80 + "vh";
 }
 </script>
 
