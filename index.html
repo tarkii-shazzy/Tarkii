@@ -1,1 +1,79 @@
 
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+h1 {
+  margin-top: 20vh;
+  font-size: 3em;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  color: #ff4d6d;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.4em;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h1>Hey [Her Name] ❤️</h1>
+
+<p>
+I didn’t know a simple moment could change everything…  
+But then I met you.
+</p>
+
+<button onclick="showMessage()">Click me 💌</button>
+
+<div class="hidden" id="message">
+You make my world lighter, calmer, and a lot more fun.  
+And honestly… I don’t want to imagine life without you.
+</div>
+</div>
+
+<script>
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+}
+</script>
+
+</body>
+</html>
