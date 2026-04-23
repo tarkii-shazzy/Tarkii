@@ -8,42 +8,82 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: black;
+  font-family: Arial, sans-serif;
   color: white;
-  text-align: center;
+  overflow-x: hidden;
 }
 
-/* full screen section */
+/* sections */
 .section {
   height: 100vh;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  overflow: hidden;
+}
+
+/* background image */
+.bg {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  transition: transform 6s ease;
+}
+
+/* zoom effect */
+.section.show .bg {
+  transform: scale(1.1);
+}
+
+/* dark overlay */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+/* text */
+.text {
+  position: relative;
+  z-index: 2;
+  font-size: 2em;
+  max-width: 700px;
+  text-align: center;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: all 1s ease;
 }
 
-/* visible animation */
-.section.show {
+.section.show .text {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* image */
-.story-img {
-  width: 90%;
-  max-width: 1000px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+/* final button */
+button {
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  background: #ff4d6d;
+  color: white;
 }
 
-/* final text */
-.final {
-  font-size: 2em;
-  padding: 20px;
+/* hearts */
+.heart {
+  position: fixed;
+  color: pink;
+  animation: float 4s linear forwards;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
 }
 </style>
 
@@ -51,25 +91,78 @@ body {
 
 <body>
 
-<!-- SECTION 1 -->
+<!-- SCENE 1 -->
 
 <div class="section">
-  <h1>Puchhuu ❤️ Shazzy</h1>
-  <p>A little story about how everything changed...</p>
+  <img src="scene1.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">Before you… things felt a little empty.</div>
 </div>
 
-<!-- SECTION 2 (YOUR IMAGE) -->
+<!-- SCENE 2 -->
 
 <div class="section">
-  <img src="story.png" class="story-img">
+  <img src="scene2.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">And then you showed up.</div>
 </div>
 
-<!-- SECTION 3 -->
+<!-- SCENE 3 -->
 
 <div class="section">
-  <div class="final">
-    Thank you for making Puchhuu the happiest ❤️ <br><br>
-    I love you, Shazzy.
+  <img src="scene3.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">And somehow… everything felt right.</div>
+</div>
+
+<!-- SCENE 4 -->
+
+<div class="section">
+  <img src="scene4.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">You became my favorite part of every day.</div>
+</div>
+
+<!-- SCENE 5 -->
+
+<div class="section">
+  <img src="scene5.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">All the little moments started to matter more.</div>
+</div>
+
+<!-- SCENE 6 -->
+
+<div class="section">
+  <img src="scene6.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">And when you're not around… it just feels off.</div>
+</div>
+
+<!-- SCENE 7 -->
+
+<div class="section">
+  <img src="scene7.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">But when you're back… everything is perfect again.</div>
+</div>
+
+<!-- SCENE 8 -->
+
+<div class="section">
+  <img src="scene8.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">I can't wait for all the memories we’ll create.</div>
+</div>
+
+<!-- SCENE 9 (FINAL) -->
+
+<div class="section">
+  <img src="scene9.png" class="bg">
+  <div class="overlay"></div>
+  <div class="text">
+    <p>I love you, Shazzy ❤️</p>
+    <button onclick="showLove()">Click me</button>
   </div>
 </div>
 
@@ -84,6 +177,21 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+function showLove() {
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "60vh";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }
+}
 </script>
 
 </body>
