@@ -8,10 +8,10 @@
 <style>
 body {
   margin: 0;
-  background: black;
+  background: #000;
   font-family: Arial, sans-serif;
   color: white;
-  overflow-x: hidden;
+  text-align: center;
 }
 
 /* INTRO */
@@ -23,18 +23,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
   flex-direction: column;
+  z-index: 10;
 }
 
 #intro h1 {
   font-size: 2.5em;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px red; }
-  to { text-shadow: 0 0 30px pink; }
 }
 
 #intro button {
@@ -42,66 +36,34 @@ body {
   padding: 12px 20px;
   border-radius: 25px;
   border: none;
-  background: red;
+  background: #ff4d6d;
   color: white;
   cursor: pointer;
 }
 
-/* PARTICLES */
-.particle {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background: pink;
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
-}
-
-/* SECTIONS */
+/* SECTION */
 .section {
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
+  padding: 40px 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
-/* BG */
-.bg {
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  object-fit: cover;
-  transition: transform 6s ease;
-}
-
-.section.show .bg {
-  transform: scale(1.1);
-}
-
-/* OVERLAY */
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
+/* IMAGE */
+img {
+  width: 95%;
+  max-width: 900px;
+  border-radius: 20px;
 }
 
 /* TEXT */
 .text {
-  position: relative;
-  z-index: 2;
-  font-size: 1.6em;
-  max-width: 90%;
-  text-align: center;
-  line-height: 1.4;
+  margin-top: 20px;
+  font-size: 1.3em;
+  max-width: 700px;
+  line-height: 1.5;
 }
 
 /* BUTTONS */
@@ -114,8 +76,15 @@ button {
   margin: 10px;
 }
 
-.yes { background: #ff4d6d; color: white; }
-.no { background: gray; color: white; position: relative; }
+.yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+.no {
+  background: gray;
+  color: white;
+}
 
 /* HEARTS */
 .heart {
@@ -143,27 +112,48 @@ button {
 
 <!-- SCENES -->
 
-<div class="section"><img src="scene1.png" class="bg"><div class="overlay"></div><div class="text" data-text="Before you… things felt a little empty."></div></div>
-
-<div class="section"><img src="scene2.png" class="bg"><div class="overlay"></div><div class="text" data-text="And then you showed up."></div></div>
-
-<div class="section"><img src="scene3.png" class="bg"><div class="overlay"></div><div class="text" data-text="Tarkiiiii! Cranky nahi hote 😄"></div></div>
-
-<div class="section"><img src="scene4.png" class="bg"><div class="overlay"></div><div class="text" data-text="You became my favorite part of every day."></div></div>
-
-<div class="section"><img src="scene5.png" class="bg"><div class="overlay"></div><div class="text" data-text="All the little moments started to matter more."></div></div>
-
-<div class="section"><img src="scene6.png" class="bg"><div class="overlay"></div><div class="text" data-text="And when you're not around… it just feels off."></div></div>
-
-<div class="section"><img src="scene7.png" class="bg"><div class="overlay"></div><div class="text" data-text="But when you're back… everything is perfect again."></div></div>
-
-<div class="section"><img src="scene8.png" class="bg"><div class="overlay"></div><div class="text" data-text="I can't wait for all the memories we’ll create."></div></div>
-
-<!-- FINAL -->
+<div class="section">
+  <img src="scene1.png">
+  <div class="text">Before you… things felt a little empty.</div>
+</div>
 
 <div class="section">
-  <img src="scene9.png" class="bg">
-  <div class="overlay"></div>
+  <img src="scene2.png">
+  <div class="text">And then you showed up.</div>
+</div>
+
+<div class="section">
+  <img src="scene3.png">
+  <div class="text">Tarkiiiii! Cranky nahi hote 😄</div>
+</div>
+
+<div class="section">
+  <img src="scene4.png">
+  <div class="text">You became my favorite part of every day.</div>
+</div>
+
+<div class="section">
+  <img src="scene5.png">
+  <div class="text">All the little moments started to matter more.</div>
+</div>
+
+<div class="section">
+  <img src="scene6.png">
+  <div class="text">And when you're not around… it just feels off.</div>
+</div>
+
+<div class="section">
+  <img src="scene7.png">
+  <div class="text">But when you're back… everything is perfect again.</div>
+</div>
+
+<div class="section">
+  <img src="scene8.png">
+  <div class="text">I can't wait for all the memories we’ll create.</div>
+</div>
+
+<div class="section">
+  <img src="scene9.png">
   <div class="text">
     <p>I love you, Shazzy ❤️</p>
     <button class="yes" onclick="showLove()">Yes ❤️</button>
@@ -171,43 +161,10 @@ button {
   </div>
 </div>
 
-<!-- AUDIO -->
-
-<audio id="music" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 function startStory() {
   document.getElementById("intro").style.display = "none";
-  document.getElementById("music").play();
 }
-
-/* TYPEWRITER */
-function typeWriter(el, text, i = 0) {
-  if (i < text.length) {
-    el.innerHTML += text.charAt(i);
-    setTimeout(() => typeWriter(el, text, i + 1), 35);
-  }
-}
-
-/* SCROLL */
-const sections = document.querySelectorAll(".section");
-
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100 && !sec.classList.contains("show")) {
-      sec.classList.add("show");
-
-      const textEl = sec.querySelector(".text");
-      if (textEl && textEl.dataset.text) {
-        textEl.innerHTML = "";
-        typeWriter(textEl, textEl.dataset.text);
-      }
-    }
-  });
-});
 
 /* HEARTS */
 function showLove() {
@@ -224,22 +181,21 @@ function showLove() {
   }
 }
 
-/* RUNAWAY */
+/* RUNAWAY BUTTON */
+let interval;
+
 function runAway(btn) {
-  btn.style.position = "absolute";
-  btn.style.left = Math.random() * 80 + "vw";
-  btn.style.top = Math.random() * 80 + "vh";
+  if (interval) return;
+
+  interval = setInterval(() => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    btn.style.position = "fixed";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+  }, 400);
 }
-
-/* PARTICLES */
-setInterval(() => {
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(p);
-
-  setTimeout(() => p.remove(), 6000);
-}, 300);
 </script>
 
 </body>
