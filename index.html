@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* INTRO SCREEN */
+/* INTRO */
 #intro {
   position: fixed;
   width: 100%;
@@ -28,8 +28,7 @@ body {
 }
 
 #intro h1 {
-  font-size: 3em;
-  letter-spacing: 3px;
+  font-size: 2.5em;
   animation: glow 2s ease-in-out infinite alternate;
 }
 
@@ -48,6 +47,22 @@ body {
   cursor: pointer;
 }
 
+/* PARTICLES */
+.particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
 /* SECTIONS */
 .section {
   height: 100vh;
@@ -58,7 +73,7 @@ body {
   overflow: hidden;
 }
 
-/* BACKGROUND */
+/* BG */
 .bg {
   position: absolute;
   width: 110%;
@@ -83,9 +98,10 @@ body {
 .text {
   position: relative;
   z-index: 2;
-  font-size: 2em;
-  max-width: 700px;
+  font-size: 1.6em;
+  max-width: 90%;
   text-align: center;
+  line-height: 1.4;
 }
 
 /* BUTTONS */
@@ -122,18 +138,25 @@ button {
 
 <div id="intro">
   <h1>Puchhuu ❤️ Shazzy</h1>
-  <button onclick="startStory()">Start</button>
+  <button onclick="startStory()">Start ❤️</button>
 </div>
 
 <!-- SCENES -->
 
 <div class="section"><img src="scene1.png" class="bg"><div class="overlay"></div><div class="text" data-text="Before you… things felt a little empty."></div></div>
+
 <div class="section"><img src="scene2.png" class="bg"><div class="overlay"></div><div class="text" data-text="And then you showed up."></div></div>
-<div class="section"><img src="scene3.png" class="bg"><div class="overlay"></div><div class="text" data-text="And somehow… everything felt right."></div></div>
+
+<div class="section"><img src="scene3.png" class="bg"><div class="overlay"></div><div class="text" data-text="Tarkiiiii! Cranky nahi hote 😄"></div></div>
+
 <div class="section"><img src="scene4.png" class="bg"><div class="overlay"></div><div class="text" data-text="You became my favorite part of every day."></div></div>
+
 <div class="section"><img src="scene5.png" class="bg"><div class="overlay"></div><div class="text" data-text="All the little moments started to matter more."></div></div>
+
 <div class="section"><img src="scene6.png" class="bg"><div class="overlay"></div><div class="text" data-text="And when you're not around… it just feels off."></div></div>
+
 <div class="section"><img src="scene7.png" class="bg"><div class="overlay"></div><div class="text" data-text="But when you're back… everything is perfect again."></div></div>
+
 <div class="section"><img src="scene8.png" class="bg"><div class="overlay"></div><div class="text" data-text="I can't wait for all the memories we’ll create."></div></div>
 
 <!-- FINAL -->
@@ -148,20 +171,27 @@ button {
   </div>
 </div>
 
+<!-- AUDIO -->
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 function startStory() {
   document.getElementById("intro").style.display = "none";
+  document.getElementById("music").play();
 }
 
 /* TYPEWRITER */
 function typeWriter(el, text, i = 0) {
   if (i < text.length) {
     el.innerHTML += text.charAt(i);
-    setTimeout(() => typeWriter(el, text, i + 1), 40);
+    setTimeout(() => typeWriter(el, text, i + 1), 35);
   }
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 const sections = document.querySelectorAll(".section");
 
 window.addEventListener("scroll", () => {
@@ -179,9 +209,9 @@ window.addEventListener("scroll", () => {
   });
 });
 
-/* HEART EFFECT */
+/* HEARTS */
 function showLove() {
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
@@ -194,12 +224,22 @@ function showLove() {
   }
 }
 
-/* RUNAWAY BUTTON */
+/* RUNAWAY */
 function runAway(btn) {
   btn.style.position = "absolute";
   btn.style.left = Math.random() * 80 + "vw";
   btn.style.top = Math.random() * 80 + "vh";
 }
+
+/* PARTICLES */
+setInterval(() => {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(p);
+
+  setTimeout(() => p.remove(), 6000);
+}, 300);
 </script>
 
 </body>
